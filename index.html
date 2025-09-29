@@ -3,417 +3,1652 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Global Trend Hub - Fashion Store</title>
-    <link rel="icon" type="image/jpeg" href="https://i.postimg.cc/FR58V8rM/009.jpg">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>The Global Trend Hub - Premium Fashion Experience</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
-        
-        .font-display {
-            font-family: 'Playfair Display', serif;
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.7;
         }
-        
-        .font-body {
-            font-family: 'Inter', sans-serif;
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            padding: 1.2rem 2rem;
+            transition: all 0.4s ease;
+            border-bottom: 1px solid rgba(255, 107, 107, 0.1);
         }
-        
-        .hero-gradient {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1600px;
+            margin: 0 auto;
         }
-        
-        .fade-in-up {
-            animation: fadeInUp 1s ease-out;
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d, #ff6b6b);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+            letter-spacing: 2px;
         }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
-        
-        .hover-lift {
-            transition: all 0.3s ease;
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
         }
-        
-        .hover-lift:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        
-        .collection-card {
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            transition: width 0.4s ease;
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cart-icon {
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cart-icon:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.8) 50%, rgba(255, 107, 107, 0.8) 100%), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
             position: relative;
             overflow: hidden;
-            transition: all 0.4s ease;
         }
-        
-        .collection-card:hover .overlay {
-            opacity: 1;
-        }
-        
-        .collection-card .overlay {
+
+        .hero::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.4);
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="15" height="15" patternUnits="userSpaceOnUse"><path d="M 15 0 L 0 0 0 15" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            animation: moveGrid 25s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(15px, 15px); }
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 70%, rgba(255, 107, 107, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 30%, rgba(255, 217, 61, 0.3) 0%, transparent 50%);
+            animation: floatingOrbs 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatingOrbs {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(20px, -20px) scale(1.1); }
+        }
+
+        .hero-content {
+            z-index: 3;
+            max-width: 1000px;
+            padding: 3rem;
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #fff, #ffd93d, #fff);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleGlow 4s ease-in-out infinite alternate;
+            text-shadow: 0 0 50px rgba(255, 255, 255, 0.3);
+            letter-spacing: 3px;
+            line-height: 1.1;
+        }
+
+        @keyframes titleGlow {
+            0% { 
+                filter: drop-shadow(0 0 20px rgba(255, 217, 61, 0.4));
+                background-position: 0% 50%;
+            }
+            100% { 
+                filter: drop-shadow(0 0 60px rgba(255, 217, 61, 0.8));
+                background-position: 100% 50%;
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            font-weight: 300;
+            letter-spacing: 1px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            border: none;
+            padding: 1.5rem 3rem;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-radius: 50px;
+            color: #000;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            margin: 0 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 107, 107, 0.5);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            border: 3px solid #fff;
+            color: #fff;
+        }
+
+        .cta-secondary:hover {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            position: relative;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(255, 107, 107, 0.1) 0%, transparent 50%);
+        }
+
+        .about-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-text h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .about-text p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+        }
+
+        .about-visual {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            height: 500px;
+        }
+
+        .about-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 25px;
+            padding: 3rem 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.1), rgba(255, 217, 61, 0.1));
             opacity: 0;
             transition: opacity 0.4s ease;
+        }
+
+        .about-card:hover::before {
+            opacity: 1;
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(255, 107, 107, 0.3);
+            box-shadow: 0 25px 50px rgba(255, 107, 107, 0.2);
+        }
+
+        .about-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-card h3 {
+            font-size: 1.5rem;
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-card p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Featured Products */
+        .featured {
+            padding: 8rem 2rem;
+            background: #111;
+            position: relative;
+        }
+
+        .featured::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.05) 0%, transparent 50%, rgba(255, 217, 61, 0.05) 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.4rem;
+            margin-bottom: 4rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            max-width: 1600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 25px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            group: hover;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.1), rgba(255, 217, 61, 0.1));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(255, 107, 107, 0.25);
+            border-color: rgba(255, 107, 107, 0.4);
+        }
+
+        .product-image {
+            height: 350px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-        
-        .parallax {
-            background-attachment: fixed;
+            font-size: 5rem;
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+        }
+
+        .product-image.jacket {
+            background-image: url('https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');
+        }
+
+        .product-image.dress {
+            background-image: url('https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');
+        }
+
+        .product-image.sneakers {
+            background-image: url('https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');
+        }
+
+        .product-image.watch {
+            background-image: url('https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');
+        }
+
+        .product-image.bag {
+            background-image: url('https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');
+        }
+
+        .product-image.shirt {
+            background-image: url('https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.8s;
+        }
+
+        .product-card:hover .product-image::before {
+            left: 100%;
+        }
+
+        .product-info {
+            padding: 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .product-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        .product-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+
+        .product-features li {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .product-features li::before {
+            content: '✨';
+            position: absolute;
+            left: 0;
+            color: #ffd93d;
+        }
+
+        .explore-button {
+            width: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            border: none;
+            padding: 1.2rem;
+            border-radius: 15px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .explore-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Categories */
+        .categories {
+            padding: 8rem 2rem;
+            background: #000;
+            position: relative;
+        }
+
+        .categories::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 70% 30%, rgba(255, 107, 107, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 30% 70%, rgba(255, 217, 61, 0.08) 0%, transparent 50%);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .category-card {
+            height: 280px;
+            border-radius: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            padding: 2rem;
             background-size: cover;
+            background-position: center;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            transition: all 0.5s ease;
+        }
+
+        .category-card:hover::before {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .category-card:hover {
+            transform: scale(1.08) rotate(2deg);
+        }
+
+        .category-card span {
+            z-index: 2;
+            position: relative;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .category-description {
+            font-size: 1rem;
+            font-weight: 400;
+            margin-top: 1rem;
+            opacity: 0.9;
+            z-index: 2;
+            position: relative;
+        }
+
+        .category-men {
+            background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');
+        }
+
+        .category-women {
+            background-image: url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');
+        }
+
+        .category-accessories {
+            background-image: url('https://images.unsplash.com/photo-1611652022419-a9419f74343d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');
+        }
+
+        .category-shoes {
+            background-image: url('https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');
+        }
+
+        /* Experience Section */
+        .experience {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            position: relative;
+        }
+
+        .experience-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .experience-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 107, 107, 0.3);
+            box-shadow: 0 20px 40px rgba(255, 107, 107, 0.15);
+        }
+
+        .experience-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+        }
+
+        .experience-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .experience-desc {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 2rem;
+            background: #111;
+            position: relative;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.05) 0%, transparent 50%, rgba(255, 217, 61, 0.05) 100%);
+        }
+
+        .contact-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: start;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.1), rgba(255, 217, 61, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .contact-card:hover::before {
+            opacity: 1;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 107, 107, 0.3);
+            box-shadow: 0 20px 40px rgba(255, 107, 107, 0.15);
+        }
+
+        .contact-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-card h3 {
+            color: #ff6b6b;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-form-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 25px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.05), rgba(255, 217, 61, 0.05));
+        }
+
+        .contact-form h3 {
+            color: #ff6b6b;
+            margin-bottom: 2.5rem;
+            font-size: 2rem;
+            text-align: center;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            flex: 1;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff6b6b;
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .contact-submit {
+            width: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            border: none;
+            padding: 1.5rem;
+            border-radius: 15px;
+            color: #000;
+            font-weight: bold;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Newsletter */
+        .newsletter {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ff6b6b 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+            animation: moveDots 30s linear infinite;
+        }
+
+        @keyframes moveDots {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(20px, 20px); }
+        }
+
+        .newsletter-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form {
+            max-width: 600px;
+            margin: 3rem auto 0;
+            display: flex;
+            gap: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1.5rem;
+            border: none;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            background: #fff;
+        }
+
+        .newsletter-button {
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            border: none;
+            padding: 1.5rem 3rem;
+            border-radius: 30px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .newsletter-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: #000;
+            padding: 5rem 2rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #ff6b6b, transparent);
+        }
+
+        .footer-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: #ff6b6b;
+            margin-bottom: 2rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .footer-section a:hover {
+            color: #ff6b6b;
+            transform: translateX(5px);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.4s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.1rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .cta-button {
+                margin: 1rem 0;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group {
+                flex-direction: column;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-visual {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
         }
     </style>
 </head>
-<body class="font-body">
-    <!-- Navigation -->
-    <nav class="bg-white shadow-sm fixed w-full top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <h1 class="text-2xl font-display font-bold text-gray-900">The Global Trend Hub</h1>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#home" class="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors">Home</a>
-                        <a href="#collections" class="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors">Collections</a>
-                        <a href="#about" class="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors">About</a>
-                        <a href="#store" class="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors">Store</a>
-                        <a href="#contact" class="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors">Contact</a>
-                    </div>
-                </div>
-                <button class="bg-gray-900 text-white px-6 py-2 rounded-md hover:bg-gray-800 transition-colors">
-                    Visit Store
-                </button>
-            </div>
-        </div>
-    </nav>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">GTH</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#products">Collections</a></li>
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="cart-icon" onclick="scrollToContact()">📞 Contact Us</button>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center pt-16 relative" style="background-image: url('https://i.postimg.cc/kMhDMvf0/Whats-App-Image-2025-08-02-at-13-23-12-1575f36d.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
-        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <div class="fade-in-up">
-                <h1 class="text-5xl md:text-7xl font-display font-bold text-white mb-6">
-                    Timeless
-                    <span class="block text-gray-200">Elegance</span>
-                </h1>
-                <p class="text-xl md:text-2xl text-gray-100 mb-8 max-w-3xl mx-auto">
-                    Discover our curated collection of premium fashion pieces that define sophistication and style.
-                </p>
-                <div class="space-x-4">
-                    <button class="bg-white text-gray-900 px-8 py-4 rounded-md font-semibold hover:bg-gray-100 transition-colors">
-                        Explore Collections
-                    </button>
-                    <button class="border-2 border-white text-white px-8 py-4 rounded-md font-semibold hover:bg-white hover:text-gray-900 transition-colors">
-                        Visit Our Store
-                    </button>
-                </div>
-            </div>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">The Global Trend Hub</h1>
+            <p class="hero-subtitle">Your Gateway to Global Fashion Excellence</p>
+            <p class="hero-description">Discover an extraordinary collection of premium clothing that transcends ordinary fashion. Each piece in our curated selection represents the pinnacle of craftsmanship, combining timeless elegance with contemporary design to create garments that don't just dress you—they transform you.</p>
+            <button class="cta-button" onclick="scrollToProducts()">Explore Collections</button>
+            <button class="cta-button cta-secondary" onclick="scrollToCategories()">Browse Categories</button>
         </div>
     </section>
 
-    <!-- Collections Section -->
-    <section id="collections" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-display font-bold text-gray-900 mb-4">Our Collections</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    From casual elegance to formal sophistication, explore our carefully curated fashion collections.
-                </p>
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <div class="about-text slide-in-left">
+                <h2>Crafting Excellence Since Forever</h2>
+                <p>At The Global Trend Hub, we believe that clothing is more than fabric and thread—it's an expression of identity, a statement of values, and a celebration of individuality. Our journey began with a simple yet profound vision: to create garments that embody the perfect harmony between traditional craftsmanship and modern innovation.</p>
+                
+                <p>Every piece in our collection tells a story of meticulous attention to detail, from the initial sketch to the final stitch. We work exclusively with master artisans who have dedicated their lives to perfecting their craft, ensuring that each garment meets our uncompromising standards of quality and beauty.</p>
+                
+                <p>Our commitment extends beyond creating beautiful clothing. We're passionate about sustainable fashion practices, ethical manufacturing processes, and supporting communities around the world. When you choose The Global Trend Hub, you're not just investing in premium fashion—you're joining a movement that values quality over quantity, craftsmanship over mass production, and timeless style over fleeting trends.</p>
+                
+                <p>From our signature evening wear that graces red carpets to our everyday essentials that elevate your daily wardrobe, every Global Trend Hub piece is designed to make you feel confident, elegant, and authentically yourself. We understand that true luxury isn't about logos or price tags—it's about the feeling you get when you wear something that was made just for you.</p>
             </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="collection-card bg-gradient-to-br from-pink-100 to-rose-200 h-96 rounded-lg overflow-hidden">
-                    <div class="overlay">
-                        <div class="text-center text-white">
-                            <h3 class="text-2xl font-display font-bold mb-2">Women's Collection</h3>
-                            <p class="text-lg">Elegant & Contemporary</p>
-                        </div>
-                    </div>
-                    <img src="https://i.postimg.cc/3JVhVLnw/3.jpg" alt="Women's Fashion Collection" class="w-full h-full object-cover">
+            
+            <div class="about-visual slide-in-right">
+                <div class="about-card">
+                    <div class="about-icon">🎨</div>
+                    <h3>Artisan Craftsmanship</h3>
+                    <p>Every garment is meticulously handcrafted by skilled artisans using time-honored techniques passed down through generations.</p>
                 </div>
                 
-                <div class="collection-card bg-gradient-to-br from-blue-100 to-indigo-200 h-96 rounded-lg overflow-hidden">
-                    <div class="overlay">
-                        <div class="text-center text-white">
-                            <h3 class="text-2xl font-display font-bold mb-2">Men's Collection</h3>
-                            <p class="text-lg">Classic & Modern</p>
-                        </div>
-                    </div>
-                    <img src="https://i.postimg.cc/vmWGWW7Z/2.jpg" alt="Men's Fashion Collection" class="w-full h-full object-cover">
+                <div class="about-card">
+                    <div class="about-icon">🌱</div>
+                    <h3>Sustainable Luxury</h3>
+                    <p>We're committed to ethical fashion practices, using eco-friendly materials and supporting fair trade initiatives worldwide.</p>
                 </div>
                 
-                <div class="collection-card bg-gradient-to-br from-purple-100 to-violet-200 h-96 rounded-lg overflow-hidden">
-                    <div class="overlay">
-                        <div class="text-center text-white">
-                            <h3 class="text-2xl font-display font-bold mb-2">Accessories</h3>
-                            <p class="text-lg">Complete Your Look</p>
-                        </div>
-                    </div>
-                    <img src="https://i.postimg.cc/R0TjSGQK/4.jpg" alt="Accessories Collection" class="w-full h-full object-cover">
+                <div class="about-card">
+                    <div class="about-icon">✨</div>
+                    <h3>Timeless Design</h3>
+                    <p>Our designs transcend seasonal trends, creating pieces that remain elegant and relevant for years to come.</p>
+                </div>
+                
+                <div class="about-card">
+                    <div class="about-icon">💎</div>
+                    <h3>Premium Materials</h3>
+                    <p>We source only the finest fabrics and materials from renowned mills and suppliers around the globe.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Featured Products -->
-    <section class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-display font-bold text-gray-900 mb-4">Featured Pieces</h2>
-                <p class="text-xl text-gray-600">Handpicked selections from our latest arrivals</p>
+    <section class="featured" id="products">
+        <h2 class="section-title fade-in">Signature Collections</h2>
+        <p class="section-subtitle fade-in">Discover our most coveted pieces, each representing the pinnacle of fashion excellence and innovative design. These carefully curated collections showcase the very best of what The Global Trend Hub has to offer.</p>
+        
+        <div class="products-grid">
+            <div class="product-card fade-in" onclick="exploreProduct('Premium Jacket')">
+                <div class="product-image jacket"></div>
+                <div class="product-info">
+                    <h3 class="product-name">Heritage Premium Jacket</h3>
+                    <p class="product-description">A masterpiece of outerwear engineering, this luxurious winter jacket combines premium materials with modern design philosophy. Crafted from the finest wool and cashmere blend, it features innovative thermal technology while maintaining an elegant silhouette that transitions seamlessly from business meetings to evening events.</p>
+                    <ul class="product-features">
+                        <li>Premium wool and cashmere blend construction</li>
+                        <li>Advanced thermal insulation technology</li>
+                        <li>Water-resistant finish with breathable lining</li>
+                        <li>Handcrafted details and custom hardware</li>
+                        <li>Available in multiple sophisticated colorways</li>
+                    </ul>
+                    <button class="explore-button">Explore Collection</button>
+                </div>
             </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="hover-lift bg-white rounded-lg shadow-sm overflow-hidden">
-                    <div class="h-64 overflow-hidden">
-                        <img src="https://i.postimg.cc/BvwRPbkn/5.jpg" alt="Elegant Evening Dress" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Elegant Evening Dress</h3>
-                        <p class="text-gray-600">Perfect for special occasions</p>
-                    </div>
+
+            <div class="product-card fade-in" onclick="exploreProduct('Designer Dress')">
+                <div class="product-image dress"></div>
+                <div class="product-info">
+                    <h3 class="product-name">Ethereal Evening Dress</h3>
+                    <p class="product-description">An enchanting creation that embodies feminine grace and sophisticated elegance. This stunning evening dress features intricate beadwork and flowing silhouettes that capture light beautifully. Perfect for galas, premieres, and special celebrations where making an unforgettable impression is essential.</p>
+                    <ul class="product-features">
+                        <li>Hand-embellished with Swarovski crystals</li>
+                        <li>Flowing silk chiffon with structured bodice</li>
+                        <li>Custom-fit tailoring available</li>
+                        <li>Timeless silhouette with modern touches</li>
+                        <li>Exclusive limited edition designs</li>
+                    </ul>
+                    <button class="explore-button">Explore Collection</button>
                 </div>
-                
-                <div class="hover-lift bg-white rounded-lg shadow-sm overflow-hidden">
-                    <div class="h-64 overflow-hidden">
-                        <img src="https://i.postimg.cc/pXY7Yq47/6.jpg" alt="Classic Button Shirt" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Classic Button Shirt</h3>
-                        <p class="text-gray-600">Timeless wardrobe essential</p>
-                    </div>
+            </div>
+
+            <div class="product-card fade-in" onclick="exploreProduct('Casual Sneakers')">
+                <div class="product-image sneakers"></div>
+                <div class="product-info">
+                    <h3 class="product-name">Urban Luxury Sneakers</h3>
+                    <p class="product-description">Where street style meets high fashion, these revolutionary sneakers redefine casual luxury. Featuring premium leather construction, innovative comfort technology, and distinctive design elements that make a statement while providing all-day comfort for the modern lifestyle.</p>
+                    <ul class="product-features">
+                        <li>Premium Italian leather construction</li>
+                        <li>Advanced cushioning and support system</li>
+                        <li>Distinctive luxury design elements</li>
+                        <li>Sustainable manufacturing processes</li>
+                        <li>Limited edition colorway releases</li>
+                    </ul>
+                    <button class="explore-button">Explore Collection</button>
                 </div>
-                
-                <div class="hover-lift bg-white rounded-lg shadow-sm overflow-hidden">
-                    <div class="h-64 overflow-hidden">
-                        <img src="https://i.postimg.cc/bvG3MTVq/7.jpg" alt="Premium Denim" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Premium Denim</h3>
-                        <p class="text-gray-600">Comfort meets style</p>
-                    </div>
+            </div>
+
+            <div class="product-card fade-in" onclick="exploreProduct('Luxury Watch')">
+                <div class="product-image watch"></div>
+                <div class="product-info">
+                    <h3 class="product-name">Signature Timepiece Collection</h3>
+                    <p class="product-description">A sophisticated fusion of traditional watchmaking and contemporary aesthetics. Each timepiece in this exclusive collection represents hundreds of hours of meticulous craftsmanship, featuring Swiss movement, premium materials, and design details that reflect our commitment to excellence.</p>
+                    <ul class="product-features">
+                        <li>Swiss automatic movement precision</li>
+                        <li>Sapphire crystal with anti-reflective coating</li>
+                        <li>Premium stainless steel or gold construction</li>
+                        <li>Water resistance up to 100 meters</li>
+                        <li>Lifetime craftsmanship warranty</li>
+                    </ul>
+                    <button class="explore-button">Explore Collection</button>
                 </div>
-                
-                <div class="hover-lift bg-white rounded-lg shadow-sm overflow-hidden">
-                    <div class="h-64 overflow-hidden">
-                        <img src="https://i.postimg.cc/ZRtFQhyL/8.jpg" alt="Designer Heels" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Designer Heels</h3>
-                        <p class="text-gray-600">Step out in confidence</p>
-                    </div>
+            </div>
+
+            <div class="product-card fade-in" onclick="exploreProduct('Designer Bag')">
+                <div class="product-image bag"></div>
+                <div class="product-info">
+                    <h3 class="product-name">Artisan Leather Handbag</h3>
+                    <p class="product-description">A testament to the art of leather craftsmanship, this exquisite handbag combines functionality with unparalleled beauty. Each bag is individually crafted by master leather artisans using techniques that have been refined over generations, resulting in a piece that ages beautifully and tells your unique story.</p>
+                    <ul class="product-features">
+                        <li>Full-grain Italian leather construction</li>
+                        <li>Hand-stitched seams and details</li>
+                        <li>Multiple compartments and organization</li>
+                        <li>Signature hardware and finishing</li>
+                        <li>Personalization options available</li>
+                    </ul>
+                    <button class="explore-button">Explore Collection</button>
+                </div>
+            </div>
+
+            <div class="product-card fade-in" onclick="exploreProduct('Classic Shirt')">
+                <div class="product-image shirt"></div>
+                <div class="product-info">
+                    <h3 class="product-name">Essential Dress Shirt</h3>
+                    <p class="product-description">The foundation of every sophisticated wardrobe, this impeccably tailored dress shirt represents the perfect balance of classic styling and modern fit. Crafted from the finest cotton with attention to every detail, it's designed to be your go-to piece for both professional and social occasions.</p>
+                    <ul class="product-features">
+                        <li>Premium Egyptian cotton construction</li>
+                        <li>Precision tailoring and fit options</li>
+                        <li>Mother-of-pearl button details</li>
+                        <li>Wrinkle-resistant finish technology</li>
+                        <li>Classic and contemporary fit options</li>
+                    </ul>
+                    <button class="explore-button">Explore Collection</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div>
-                    <h2 class="text-4xl font-display font-bold text-gray-900 mb-6">Our Story</h2>
-                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
-                        The Global Trend Hub has been dedicated to bringing you the finest in contemporary clothing. 
-                        We believe that fashion is more than just clothing – it's a form of self-expression that empowers 
-                        individuals to showcase their unique personality.
-                    </p>
-                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-                        Our carefully curated collections feature pieces from emerging designers and established brands, 
-                        ensuring that every item in our store meets our high standards of quality, style, and craftsmanship.
-                    </p>
-                    <div class="grid grid-cols-2 gap-8">
-                        <div>
-                            <div class="text-3xl font-bold text-gray-900">8+</div>
-                            <div class="text-gray-600">Years of Excellence</div>
-                        </div>
-                        <div>
-                            <div class="text-3xl font-bold text-gray-900">5000+</div>
-                            <div class="text-gray-600">Happy Customers</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl h-96 flex items-center justify-center">
-                    <div class="text-center">
-                        <div class="text-8xl mb-4">✨</div>
-                        <h3 class="text-2xl font-display font-semibold text-gray-800">Quality & Style</h3>
-                    </div>
-                </div>
+    <!-- Categories -->
+    <section class="categories" id="categories">
+        <h2 class="section-title fade-in">Curated Categories</h2>
+        <p class="section-subtitle fade-in">Explore our thoughtfully organized collections, each designed to cater to different aspects of your lifestyle while maintaining our signature standard of excellence.</p>
+        
+        <div class="categories-grid">
+            <div class="category-card category-men fade-in" onclick="filterCategory('men')">
+                <span>Men's Collection</span>
+                <p class="category-description">Sophisticated menswear that embodies confidence and refined taste</p>
+            </div>
+            <div class="category-card category-women fade-in" onclick="filterCategory('women')">
+                <span>Women's Collection</span>
+                <p class="category-description">Elegant designs that celebrate femininity and empower confidence</p>
+            </div>
+            <div class="category-card category-accessories fade-in" onclick="filterCategory('accessories')">
+                <span>Luxury Accessories</span>
+                <p class="category-description">Exquisite details that complete and elevate every ensemble</p>
+            </div>
+            <div class="category-card category-shoes fade-in" onclick="filterCategory('shoes')">
+                <span>Premium Footwear</span>
+                <p class="category-description">Exceptional shoes that combine comfort with uncompromising style</p>
             </div>
         </div>
     </section>
 
-    <!-- Store Location -->
-    <section id="store" class="py-20 bg-gray-900 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-display font-bold mb-4">Visit Our Store</h2>
-                <p class="text-xl text-gray-300">Experience our collections in person at our flagship location</p>
-            </div>
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div>
-                    <div class="bg-gray-800 p-8 rounded-2xl">
-                        <h3 class="text-2xl font-display font-bold mb-6">Store Information</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="text-2xl">📍</div>
-                                <div>
-                                    <div class="font-semibold">Address</div>
-                                    <div class="text-gray-300">1/1 28 Elizabeth Street G51 1AD Glasgow Scotland</div>
-                                </div>
-                            </div>
-                            <div class="flex items-center space-x-4">
-                                <div class="text-2xl">🕒</div>
-                                <div>
-                                    <div class="font-semibold">Hours</div>
-                                    <div class="text-gray-300">Mon-Sat: 10AM-8PM, Sun: 12PM-6PM</div>
-                                </div>
-                            </div>
-                            <div class="flex items-center space-x-4">
-                                <div class="text-2xl">📞</div>
-                                <div>
-                                    <div class="font-semibold">Phone</div>
-                                    <div class="text-gray-300">+923295668405</div>
-                                </div>
-                            </div>
-                            <div class="flex items-center space-x-4">
-                                <div class="text-2xl">📧</div>
-                                <div>
-                                    <div class="font-semibold">Email</div>
-                                    <div class="text-gray-300">info@theglobaltrendhub.com</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Experience Section -->
+    <section class="experience">
+        <div class="experience-content">
+            <h2 class="section-title fade-in">The Global Trend Hub Experience</h2>
+            <p class="section-subtitle fade-in">More than just fashion, we offer a complete luxury experience that extends far beyond the moment of purchase. From personalized styling consultations to exclusive events, every interaction with The Global Trend Hub is designed to exceed your expectations.</p>
+            
+            <div class="experience-grid">
+                <div class="experience-item fade-in">
+                    <div class="experience-number">01</div>
+                    <h3 class="experience-title">Personal Styling</h3>
+                    <p class="experience-desc">Work one-on-one with our expert stylists to create a wardrobe that perfectly reflects your personality and lifestyle. Our personalized approach ensures every piece works harmoniously together while expressing your unique style.</p>
                 </div>
-                <div class="bg-gray-800 rounded-2xl h-96 overflow-hidden">
-                    <img src="https://i.postimg.cc/dVh2t02B/9.jpg" alt="Our Beautiful Store Interior" class="w-full h-full object-cover">
+                
+                <div class="experience-item fade-in">
+                    <div class="experience-number">02</div>
+                    <h3 class="experience-title">Custom Tailoring</h3>
+                    <p class="experience-desc">Experience the luxury of perfectly fitted garments with our master tailors. Every piece can be adjusted to your exact measurements, ensuring a flawless fit that enhances your natural silhouette and provides unmatched comfort.</p>
+                </div>
+                
+                <div class="experience-item fade-in">
+                    <div class="experience-number">03</div>
+                    <h3 class="experience-title">Exclusive Events</h3>
+                    <p class="experience-desc">Join our community of fashion enthusiasts at exclusive trunk shows, designer meet-and-greets, and private shopping events. These intimate gatherings offer first access to new collections and unique networking opportunities.</p>
+                </div>
+                
+                <div class="experience-item fade-in">
+                    <div class="experience-number">04</div>
+                    <h3 class="experience-title">Lifetime Care</h3>
+                    <p class="experience-desc">Our relationship doesn't end at purchase. We provide comprehensive care services including professional cleaning, repairs, and alterations to ensure your Global Trend Hub pieces maintain their beauty and quality for years to come.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl font-display font-bold text-gray-900 mb-4">Get In Touch</h2>
-            <p class="text-xl text-gray-600 mb-12">
-                Have questions about our collections or need styling advice? We're here to help!
-            </p>
-            <div class="grid md:grid-cols-3 gap-8 mb-12">
-                <div class="hover-lift bg-gray-50 p-8 rounded-2xl">
-                    <div class="text-4xl mb-4">📧</div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Email</h3>
-                    <p class="text-gray-600">info@theglobaltrendhub.com</p>
+    <section class="contact" id="contact">
+        <h2 class="section-title fade-in">Connect With The Global Trend Hub</h2>
+        <p class="section-subtitle fade-in">We're here to assist you in every aspect of your fashion journey. Whether you have questions about our collections, need styling advice, or want to schedule a private consultation, our team is ready to provide exceptional service.</p>
+        
+        <div class="contact-container">
+            <div class="contact-info fade-in">
+                <div class="contact-card">
+                    <div class="contact-icon">🏢</div>
+                    <h3>Flagship Boutique</h3>
+                    <p>1/1 28 Elizabeth Street<br>Glasgow G51 1AD<br>United Kingdom<br><br>Visit our stunning flagship store where you can experience our complete collection in an environment designed for luxury shopping and personal service.</p>
                 </div>
-                <div class="hover-lift bg-gray-50 p-8 rounded-2xl">
-                    <div class="text-4xl mb-4">📱</div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Phone</h3>
-                    <p class="text-gray-600">+923295668405</p>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">📞</div>
+                    <h3>Contact Information</h3>
+                    <p>Phone: +92937847037<br>WhatsApp: +923444790806<br><br>Monday - Friday: 9AM - 8PM<br>Saturday - Sunday: 10AM - 6PM<br><br>Our dedicated team is available to assist with appointments, styling consultations, and any questions about our collections.</p>
                 </div>
-                <div class="hover-lift bg-gray-50 p-8 rounded-2xl">
-                    <div class="text-4xl mb-4">💬</div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Instagram</h3>
-                    <p class="text-gray-600">@jan.labeeb</p>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">✉️</div>
+                    <h3>Digital Communication</h3>
+                    <p>info@theglobaltrendhub.com<br><br>General Inquiries & Support<br>Styling Consultations<br>Business Partnerships<br><br>Reach out via email for detailed inquiries, styling requests, or to schedule virtual consultations with our fashion experts.</p>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">🌐</div>
+                    <h3>Social Community</h3>
+                    <p>@theglobaltrendhub<br><br>Instagram | Facebook<br>Twitter | TikTok<br><br>Follow us for behind-the-scenes content, styling inspiration, and exclusive previews of upcoming collections and events.</p>
                 </div>
             </div>
-            <button class="bg-gray-900 text-white px-8 py-4 rounded-md font-semibold hover:bg-gray-800 transition-colors">
-                Schedule a Personal Styling Session
-            </button>
+            
+            <div class="contact-form-container fade-in">
+                <form class="contact-form" onsubmit="sendMessage(event)">
+                    <h3>Start a Conversation</h3>
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Full Name" required>
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Subject of Inquiry" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Tell us how we can assist you today. Whether you're looking for styling advice, have questions about our collections, or want to schedule a consultation, we're here to help." rows="6" required></textarea>
+                    </div>
+                    <button type="submit" class="contact-submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="newsletter-content">
+            <h2 class="section-title">Join The Global Trend Hub Community</h2>
+            <p>Be the first to discover new collections, receive exclusive styling tips, and get invitations to private events. Our newsletter brings the world of luxury fashion directly to your inbox with curated content designed for the discerning fashion enthusiast.</p>
+            <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                <button type="submit" class="newsletter-button">Join Community</button>
+            </form>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-2xl font-display font-bold mb-4">The Global Trend Hub</h3>
-                    <p class="text-gray-400 mb-4">Timeless fashion for the modern individual.</p>
-                    <div class="flex space-x-4">
-                        <!-- Social media links removed -->
-                    </div>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Collections</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors">Women's Fashion</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Men's Fashion</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Accessories</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">New Arrivals</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Services</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors">Personal Styling</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Alterations</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Gift Cards</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">VIP Program</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Contact</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li>1/1 28 Elizabeth Street</li>
-                        <li>G51 1AD Glasgow Scotland</li>
-                        <li>+923295668405</li>
-                        <li>info@theglobaltrendhub.com</li>
-                    </ul>
-                </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Customer Excellence</h3>
+                <a href="#contact">Contact Our Concierge</a>
+                <a href="#shipping">Shipping & Delivery</a>
+                <a href="#returns">Returns & Exchanges</a>
+                <a href="#size-guide">Size & Fit Guide</a>
+                <a href="#care">Garment Care Instructions</a>
+                <a href="#appointments">Book Consultation</a>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 The Global Trend Hub. All rights reserved.</p>
+            <div class="footer-section">
+                <h3>About The Global Trend Hub</h3>
+                <a href="#story">Our Heritage Story</a>
+                <a href="#craftsmanship">Artisan Craftsmanship</a>
+                <a href="#sustainability">Sustainability Commitment</a>
+                <a href="#careers">Career Opportunities</a>
+                <a href="#press">Press & Media</a>
+                <a href="#partnerships">Brand Partnerships</a>
             </div>
+            <div class="footer-section">
+                <h3>Collections</h3>
+                <a href="#new-arrivals">New Arrivals</a>
+                <a href="#signature">Signature Pieces</a>
+                <a href="#seasonal">Seasonal Collections</a>
+                <a href="#limited">Limited Editions</a>
+                <a href="#custom">Custom Creations</a>
+                <a href="#archive">Archive Collection</a>
+            </div>
+            <div class="footer-section">
+                <h3>Connect & Follow</h3>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">f</a>
+                    <a href="#" class="social-icon">i</a>
+                    <a href="#" class="social-icon">t</a>
+                    <a href="#" class="social-icon">y</a>
+                    <a href="#" class="social-icon">p</a>
+                </div>
+                <a href="#newsletter">Newsletter Subscription</a>
+                <a href="#events">Exclusive Events</a>
+                <a href="#community">Fashion Community</a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 The Global Trend Hub. All rights reserved. | Privacy Policy | Terms of Service | Accessibility</p>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        // Smooth scrolling functions
+        function scrollToProducts() {
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToCategories() {
+            document.getElementById('categories').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Product exploration
+        function exploreProduct(productName) {
+            showNotification(`Exploring ${productName}... Contact us for more details! ✨`);
+        }
+
+        // Category exploration
+        function filterCategory(category) {
+            const categoryNames = {
+                'men': "Men's Collection",
+                'women': "Women's Collection", 
+                'accessories': 'Luxury Accessories',
+                'shoes': 'Premium Footwear'
+            };
+            showNotification(`Exploring ${categoryNames[category]}... Discover exceptional pieces! ✨`);
+        }
+
+        // Newsletter subscription
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('.newsletter-input').value;
+            showNotification(`Welcome to The Global Trend Hub community, ${email.split('@')[0]}! You'll receive exclusive updates soon. 💎`);
+            event.target.reset();
+        }
+
+        // Contact form submission
+        function sendMessage(event) {
+            event.preventDefault();
+            const form = event.target;
+            const name = form.querySelector('input[placeholder="Your Full Name"]').value;
+            
+            showNotification(`Thank you ${name}! Your message has been received. Our concierge team will respond within 24 hours. ✨`);
+            form.reset();
+        }
+
+        // Enhanced notification system
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 120px;
+                right: 30px;
+                background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+                color: #000;
+                padding: 1.5rem 2.5rem;
+                border-radius: 15px;
+                font-weight: bold;
+                z-index: 10000;
+                animation: slideIn 0.5s ease;
+                box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+                max-width: 350px;
+                font-size: 1rem;
+                line-height: 1.4;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.5s ease';
+                setTimeout(() => notification.remove(), 500);
+            }, 4000);
+        }
+
+        // Enhanced notification animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(120%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(120%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Advanced scroll animations
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 100;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Enhanced header scroll effect
+        function handleHeaderScroll() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(0, 0, 0, 0.98)';
+                header.style.borderBottom = '1px solid rgba(255, 107, 107, 0.2)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.95)';
+                header.style.borderBottom = '1px solid rgba(255, 107, 107, 0.1)';
+            }
+        }
+
+        // Parallax effect for hero section
+        function handleParallax() {
+            const hero = document.querySelector('.hero');
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            
+            if (hero) {
+                hero.style.transform = `translateY(${rate}px)`;
+            }
+        }
+
+        // Enhanced product card interactions
+        function initializeProductCards() {
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-20px) scale(1.03)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        }
+
+        // Event listeners
+        window.addEventListener('scroll', () => {
+            handleScrollAnimations();
+            handleHeaderScroll();
+            handleParallax();
+        });
+
+        // Initialize everything on load
+        document.addEventListener('DOMContentLoaded', () => {
+            handleScrollAnimations();
+            initializeProductCards();
+            
+            // Welcome message
+            setTimeout(() => {
+                showNotification('Welcome to The Global Trend Hub! Explore our exclusive collections. ✨');
+            }, 1000);
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
                 }
             });
         });
-
-        // Navigation background on scroll
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('shadow-lg');
-            } else {
-                nav.classList.remove('shadow-lg');
-            }
-        });
-
-        // Button click effects
-        document.querySelectorAll('button').forEach(button => {
-            button.addEventListener('click', function() {
-                this.style.transform = 'scale(0.98)';
-                setTimeout(() => {
-                    this.style.transform = 'scale(1)';
-                }, 150);
-            });
-        });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9859c3ceb7a0a07f',t:'MTc1ODk2MzE0Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'986d3e6831cf167a',t:'MTc1OTE2NzM5Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
