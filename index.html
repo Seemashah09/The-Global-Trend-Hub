@@ -1519,13 +1519,48 @@
             event.target.reset();
         }
 
-        // Contact form submission
+        // Contact form submission with email functionality
         function sendMessage(event) {
             event.preventDefault();
             const form = event.target;
             const name = form.querySelector('input[placeholder="Your Full Name"]').value;
+            const email = form.querySelector('input[placeholder="Email Address"]').value;
+            const subject = form.querySelector('input[placeholder="Subject of Inquiry"]').value;
+            const message = form.querySelector('textarea').value;
             
-            showNotification(`Thank you ${name}! Your message has been received. Our concierge team will respond within 24 hours. ✨`);
+            // Create email content
+            const emailSubject = `New Inquiry from ${name} - ${subject}`;
+            const emailBody = `
+New customer inquiry from The Global Trend Hub website:
+
+Name: ${name}
+Email: ${email}
+Subject: ${subject}
+
+Message:
+${message}
+
+---
+This inquiry was sent from The Global Trend Hub contact form.
+Please reply directly to the customer's email: ${email}
+            `.trim();
+            
+            // Create mailto link
+            const mailtoLink = `mailto:info@theglobaltrendhub.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+            
+            // Try to open email client
+            try {
+                window.open(mailtoLink, '_blank');
+                showNotification(`Thank you ${name}! Your inquiry is being processed. We'll respond within 24 hours. ✨`);
+            } catch (error) {
+                // Fallback: Copy email content to clipboard
+                navigator.clipboard.writeText(`To: info@theglobaltrendhub.com\nSubject: ${emailSubject}\n\n${emailBody}`).then(() => {
+                    showNotification(`Thank you ${name}! Email content copied to clipboard. Please paste it in your email client. ✨`);
+                }).catch(() => {
+                    showNotification(`Thank you ${name}! Please email us directly at info@theglobaltrendhub.com with your inquiry. ✨`);
+                });
+            }
+            
             form.reset();
         }
 
@@ -1650,5 +1685,5 @@
             });
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'986d3e6831cf167a',t:'MTc1OTE2NzM5Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9872f3bc202bfbff',t:'MTc1OTIyNzI1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
