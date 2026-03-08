@@ -7,14 +7,6 @@
     <link rel="apple-touch-icon" sizes="48x48" href="/favicon.ico">
     <script src=<head>
   <script src="https://www.google.com/recaptcha/enterprise.js?render=6Ldwm4MsAAAAAEvGabn3pBBrhaxZCHuJg6ytssxG"></script>
-    <script>
-  function onClick(e) {
-    e.preventDefault();
-    grecaptcha.enterprise.ready(async () => {
-      const token = await grecaptcha.enterprise.execute('6Ldwm4MsAAAAAEvGabn3pBBrhaxZCHuJg6ytssxG', {action: 'LOGIN'});
-    });
-  }
-</script>
 </head>
     <title>The Global Trend Hub - Premium Fashion Experience</title>
     <style>
@@ -31,12 +23,14 @@
 </style>
 </head>
 <body>
-    {
-  "event": {
-    "token": "TOKEN",
-    "expectedAction": "USER_ACTION",
-    "siteKey": "6Ldwm4MsAAAAAEvGabn3pBBrhaxZCHuJg6ytssxG",
+  }<script>
+  function onClick(e) {
+    e.preventDefault();
+    grecaptcha.enterprise.ready(async () => {
+      const token = await grecaptcha.enterprise.execute('6Ldwm4MsAAAAAEvGabn3pBBrhaxZCHuJg6ytssxG', {action: 'LOGIN'});
+    });
   }
+</script>
 }
         /* Header */
         .header {
