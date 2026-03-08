@@ -6,6 +6,12 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="48x48" href="/favicon.ico">
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+function onSubmit(token) {
+    // CAPTCHA verified, submit your form
+    document.getElementById("mainForm").submit();
+}
+</script>
 </head>
     <title>The Global Trend Hub - Premium Fashion Experience</title>
     <style>
