@@ -18,11 +18,16 @@
             color: #fff;
             overflow-x: hidden;
             line-height: 1.7;
-            <form action="" method="POST">
-            <div style="text-align:center; margin-top:100px;">
-    <h3>Please verify you are human</h3>
-    <div class="g-recaptcha" data-sitekey="6LcDpIMsAAAAAACAzC0vFf9m2BYZIHXYXIJ_PZ0_"></div>
-  </div>
+            <form action="your-server-endpoint" method="POST">
+    <button 
+        class="g-recaptcha" 
+        data-sitekey=6LcPqIMsAAAAAHn-TeURWH_lTeiDBzE4b9F3dxwT" 
+        data-callback='onSubmit' 
+        data-action='submit'>
+        Submit
+    </button>
+</form>
+      
         }
         /* Header */
         .header {
