@@ -12,7 +12,6 @@ function onSubmit(token) {
     document.getElementById("mainForm").submit();
 }
 </script>
-</head>
     <title>The Global Trend Hub - Premium Fashion Experience</title>
     <style>
         body {
@@ -24,15 +23,13 @@ function onSubmit(token) {
             color: #fff;
             overflow-x: hidden;
             line-height: 1.7;
-            <form action="your-server-endpoint" method="POST">
-    <button 
-        class="g-recaptcha" 
-        data-sitekey=6LcPqIMsAAAAAHn-TeURWH_lTeiDBzE4b9F3dxwT" 
-        data-callback='onSubmit' 
-        data-action='submit'>
-        Submit
-    </button>
-</form>
+            <form id="mainForm" action="/submit-form" method="POST" style="margin-top:150px; text-align:center;">
+      <div class="g-recaptcha"
+             data-sitekey="6LcPqIMsAAAAAHn-TeURWH_lTeiDBzE4b9F3dxwT"
+             data-size="invisible"
+             data-callback="onSubmit"
+             data-badge="bottomright">
+        </div>
         }
         /* Header */
         .header {
