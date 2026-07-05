@@ -13,7 +13,6 @@
    The Global Trend Hub — 01. tokens.css
    Design tokens, CSS reset, base typography
    ============================================================ */
-
 :root{
   --bg: #08080C;
   --bg-soft: rgba(255,255,255,0.035);
@@ -34,7 +33,6 @@
   --line-strong: rgba(255,255,255,0.18);
   --max: 1180px;
 }
-
 *,*::before,*::after{ box-sizing: border-box; }
 html{ scroll-behavior: smooth; background: var(--bg); }
 body{
@@ -50,7 +48,6 @@ body{
 img{ max-width:100%; display:block; }
 a{ color:inherit; text-decoration:none; }
 .wrap{ max-width: var(--max); margin:0 auto; padding: 0 28px; }
-
 h1,h2,h3,h4{
   font-family:'Oswald', 'Inter', sans-serif;
   font-weight:600;
@@ -64,7 +61,6 @@ h1{ font-size:clamp(2.4rem, 5.4vw, 4.3rem); font-weight:600; }
 h2{ font-size:clamp(1.8rem, 3.2vw, 2.5rem); }
 h3{ font-size:1.15rem; text-transform:none; font-family:'Inter',sans-serif; font-weight:700; color: var(--ink); }
 p{ margin:0 0 1em; color: var(--text); }
-
 .eyebrow{
   font-family:'IBM Plex Mono', monospace;
   font-size:.72rem;
@@ -81,7 +77,6 @@ p{ margin:0 0 1em; color: var(--text); }
    The Global Trend Hub — 02. layout.css
    Header/nav, ambient background, hero, sections, footer structure
    ============================================================ */
-
 /* ---------- ambient color-blob background (Lusion-style glow, pure CSS, no images) ---------- */
 .bg-blobs{ position:fixed; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
 .blob{ position:absolute; border-radius:50%; filter:blur(100px); will-change:transform; animation: blob-float 20s ease-in-out infinite; }
