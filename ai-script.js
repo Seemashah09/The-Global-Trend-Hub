@@ -1,3 +1,5 @@
+import { GoogleGenAI } from "@google/genai";
+
 // Function to fetch the API key safely without hardcoding it
 function getSecureApiKey() {
     let key = localStorage.getItem('my_gemini_key');
@@ -18,23 +20,26 @@ async function generateAICorrespondence(userPrompt) {
     
     if (!apiKey) {
         alert("An API Key is required to use the AI features.");
-        return;
+        return null;
     }
 
     // Initialize the Gemini client dynamically using the safe key
     const ai = new GoogleGenAI({ apiKey: apiKey });
     
     try {
-        const response = await ai.create({
-            model: "gemini-2.5-flash", // Using the updated fast model
-            input: userPrompt,
+        const response = await ai.models.generateContent({
+            model: "gemini-2.5-flash", 
+            contents: userPrompt,
         });
         
-        console.log("AI Response:", response.output_text);
-        return response.output_text;
+        return response.text;
     } catch (error) {
         console.error("AI Generation failed:", error);
         // If the key was invalid or wrong, clear it so you can re-type it next time
         localStorage.removeItem('my_gemini_key');
+        return null;
     }
 }
+
+// Attach the function to the global window object so the button can see it
+window.generateAICorrespondence = generateAICorrespondence;
