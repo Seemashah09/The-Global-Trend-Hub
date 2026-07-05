@@ -578,5 +578,82 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   });
 })();
 </script>
+   <!-- Include this at the top of your head or body to load the official Google GenAI library -->
+<script type="importmap">
+  {
+    "imports": {
+      "@google/genai": "https://esm.sh/@google/genai"
+    }
+  }
+</script>
+
+<!-- The Chat UI Container -->
+<div class="ai-chat-box" style="max-width: 600px; margin: 30px auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 12px; font-family: sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.05); background: #fff;">
+    <h3 style="margin-top: 0; color: #1a73e8;">Gemini AI Assistant</h3>
+    
+    <!-- Prompt Input Area -->
+    <textarea id="ai-prompt" rows="4" style="width: 100%; box-sizing: border-box; padding: 12px; border: 1px solid #ccc; border-radius: 8px; resize: vertical; font-size: 14px;" placeholder="Ask the AI something..."></textarea>
+    
+    <!-- Action Row (Generate & Copy buttons) -->
+    <div style="margin-top: 12px; display: flex; gap: 10px;">
+        <button onclick="runMyAI()" style="background: #1a73e8; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold;">Generate Response</button>
+        <button onclick="copyAIResponse()" id="copy-btn" style="background: #f1f3f4; color: #3c4043; border: 1px solid #dadce0; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; display: none;">Copy Result</button>
+    </div>
+    
+    <!-- Response Display -->
+    <div id="ai-response-wrapper" style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px; border: 1px solid #f1f3f4; display: none;">
+        <strong style="display: block; margin-bottom: 5px; color: #5f6368; font-size: 12px; text-transform: uppercase;">Response:</strong>
+        <div id="ai-response" style="white-space: pre-wrap; font-size: 15px; color: #202124; line-height: 1.5;"></div>
+    </div>
+</div>
+
+<!-- Load your script as a module so it can handle imports -->
+<script type="module" src="ai-script.js"></script>
+
+<!-- UI Functionality -->
+<script>
+async function runMyAI() {
+    const promptElement = document.getElementById('ai-prompt');
+    const responseWrapper = document.getElementById('ai-response-wrapper');
+    const responseElement = document.getElementById('ai-response');
+    const copyBtn = document.getElementById('copy-btn');
+    
+    const promptText = promptElement.value.trim();
+    if (!promptText) {
+        alert("Please type something first!");
+        return;
+    }
+    
+    // Show the box and set loading state
+    responseWrapper.style.display = "block";
+    responseElement.innerText = "Thinking...";
+    copyBtn.style.display = "none";
+    
+    // Call the global function exposed by your module script
+    if (typeof window.generateAICorrespondence === 'function') {
+        const result = await window.generateAICorrespondence(promptText);
+        if (result) {
+            responseElement.innerText = result;
+            copyBtn.style.display = "inline-block"; // Show copy button when text exists
+        } else {
+            responseElement.innerText = "Error generating response. Please check your console or API key.";
+        }
+    } else {
+        responseElement.innerText = "AI Script is still loading. Please try again in a second.";
+    }
+}
+
+// Function to copy the text to your clipboard
+function copyAIResponse() {
+    const responseText = document.getElementById('ai-response').innerText;
+    navigator.clipboard.writeText(responseText).then(() => {
+        const copyBtn = document.getElementById('copy-btn');
+        copyBtn.innerText = "Copied!";
+        setTimeout(() => { copyBtn.innerText = "Copy Result"; }, 2000);
+    }).catch(err => {
+        console.error("Could not copy text: ", err);
+    });
+}
+</script>
 </body>
 </html>
