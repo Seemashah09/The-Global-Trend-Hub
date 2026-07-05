@@ -1,36 +1,40 @@
-mport { GoogleGenAI } from 'https://esm.run';
-
-// Paste your AQ. key inside the single quotes below
-const ai = new GoogleGenAI({ apiKey: 'AQ.Ab8RN6JVPl3DbNeCCN7-z1ik5ju8Sbx0ywSxmuBTCtZ0q1sUcw' });
-
-const inputField = document.getElementById('aiInput');
-const submitBtn = document.getElementById('aiBtn');
-const outputDisplay = document.getElementById('aiOutput');
-
-async function callGoogleAI() {
-  const userText = inputField.value.trim();
-  if (!userText) {
-    outputDisplay.innerText = "Please type something first!";
-    return;
-  }
-  
-  submitBtn.innerText = "Thinking...";
-  submitBtn.disabled = true;
-  outputDisplay.innerText = "Connecting to Google AI...";
-
-  try {
-    const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash', 
-      contents: userText,
-    });
-    outputDisplay.innerText = response.text;
-  } catch (error) {
-    console.error(error);
-    outputDisplay.innerText = "Error: Could not reach AI. Try again.";
-  } finally {
-    submitBtn.innerText = "Send to AI";
-    submitBtn.disabled = false;
-  }
+// Function to fetch the API key safely without hardcoding it
+function getSecureApiKey() {
+    let key = localStorage.getItem('my_gemini_key');
+    
+    // If the browser doesn't have the key saved yet, ask you for it
+    if (!key) {
+        key = prompt("Please enter your Gemini API Key (This is saved only inside your personal browser):");
+        if (key) {
+            localStorage.setItem('my_gemini_key', key);
+        }
+    }
+    return key;
 }
 
-submitBtn.addEventListener('click', callGoogleAI);
+// Your main function to call the AI
+async function generateAICorrespondence(userPrompt) {
+    const apiKey = getSecureApiKey();
+    
+    if (!apiKey) {
+        alert("An API Key is required to use the AI features.");
+        return;
+    }
+
+    // Initialize the Gemini client dynamically using the safe key
+    const ai = new GoogleGenAI({ apiKey: apiKey });
+    
+    try {
+        const response = await ai.create({
+            model: "gemini-2.5-flash", // Using the updated fast model
+            input: userPrompt,
+        });
+        
+        console.log("AI Response:", response.output_text);
+        return response.output_text;
+    } catch (error) {
+        console.error("AI Generation failed:", error);
+        // If the key was invalid or wrong, clear it so you can re-type it next time
+        localStorage.removeItem('my_gemini_key');
+    }
+}
