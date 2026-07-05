@@ -290,6 +290,33 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 </style>
 </head>
 <body>
+   </script<!-- Floating AI Chat Widget -->
+<div id="aiChatWidget" style="position: fixed; bottom: 20px; right: 20px; width: 360px; max-width: calc(100vw - 40px); background: #ffffff; border-radius: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); font-family: sans-serif; z-index: 999999; overflow: hidden;">
+  
+  <!-- Header -->
+  <div style="background: linear-gradient(135deg, #007bff, #0056b3); padding: 15px 20px; color: #ffffff; display: flex; align-items: center; gap: 10px;">
+    <div style="width: 10px; height: 10px; background: #28a745; border-radius: 50%;"></div>
+    <span style="font-weight: 600; font-size: 15px;">AI Assistant</span>
+  </div>
+
+  <!-- Content Box -->
+  <div style="padding: 20px; background: #f8f9fa;">
+    <div id="aiOutput" style="margin-bottom: 15px; max-height: 200px; overflow-y: auto; padding: 12px; background: #ffffff; border: 1px solid #e9ecef; border-radius: 10px; color: #333333; font-size: 14px; line-height: 1.5; white-space: pre-wrap;">
+      Hello! How can I help you today?
+    </div>
+    
+    <!-- Input Field -->
+    <textarea id="aiInput" placeholder="Type a message..." style="width: 100%; height: 60px; padding: 12px; border: 1px solid #ced4da; border-radius: 10px; box-sizing: border-box; resize: none; font-size: 14px; outline: none;"></textarea>
+    
+    <!-- Send Button -->
+    <button id="aiBtn" style="margin-top: 10px; width: 100%; padding: 12px; background: #007bff; color: #ffffff; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 14px;">
+      Send Message
+    </button>
+  </div>
+</div>
+
+<!-- This links your HTML page to the JavaScript logic below -->
+<script type="module" src="./ai-script.js"></script>
 <div class="bg-blobs" aria-hidden="true">
   <div class="blob blob1"></div>
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -577,33 +604,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     el.addEventListener('mouseleave', function(){ glow.classList.remove('active'); });
   });
 })();
-</script<!-- Floating AI Chat Widget -->
-<div id="aiChatWidget" style="position: fixed; bottom: 20px; right: 20px; width: 360px; max-width: calc(100vw - 40px); background: #ffffff; border-radius: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); font-family: sans-serif; z-index: 999999; overflow: hidden;">
-  
-  <!-- Header -->
-  <div style="background: linear-gradient(135deg, #007bff, #0056b3); padding: 15px 20px; color: #ffffff; display: flex; align-items: center; gap: 10px;">
-    <div style="width: 10px; height: 10px; background: #28a745; border-radius: 50%;"></div>
-    <span style="font-weight: 600; font-size: 15px;">AI Assistant</span>
-  </div>
-
-  <!-- Content Box -->
-  <div style="padding: 20px; background: #f8f9fa;">
-    <div id="aiOutput" style="margin-bottom: 15px; max-height: 200px; overflow-y: auto; padding: 12px; background: #ffffff; border: 1px solid #e9ecef; border-radius: 10px; color: #333333; font-size: 14px; line-height: 1.5; white-space: pre-wrap;">
-      Hello! How can I help you today?
-    </div>
-    
-    <!-- Input Field -->
-    <textarea id="aiInput" placeholder="Type a message..." style="width: 100%; height: 60px; padding: 12px; border: 1px solid #ced4da; border-radius: 10px; box-sizing: border-box; resize: none; font-size: 14px; outline: none;"></textarea>
-    
-    <!-- Send Button -->
-    <button id="aiBtn" style="margin-top: 10px; width: 100%; padding: 12px; background: #007bff; color: #ffffff; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 14px;">
-      Send Message
-    </button>
-  </div>
-</div>
-
-<!-- This links your HTML page to the JavaScript logic below -->
-<script type="module" src="./ai-script.js"></script>
    
 </body>
 </html>
