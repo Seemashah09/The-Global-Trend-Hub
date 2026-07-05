@@ -23,23 +23,24 @@ async function generateAICorrespondence(userPrompt) {
         return null;
     }
 
-    // Initialize the Gemini client dynamically using the safe key
-    const ai = new GoogleGenAI({ apiKey: apiKey });
-    
     try {
+        // Initialize the Gemini client using the browser module syntax
+        const ai = new GoogleGenAI({ apiKey: apiKey });
+        
+        // Correct browser SDK method syntax for generation
         const response = await ai.models.generateContent({
-            model: "gemini-2.5-flash", 
+            model: 'gemini-2.5-flash',
             contents: userPrompt,
         });
         
         return response.text;
     } catch (error) {
         console.error("AI Generation failed:", error);
-        // If the key was invalid or wrong, clear it so you can re-type it next time
+        // If the key was invalid or expired, clear it so you can re-type it
         localStorage.removeItem('my_gemini_key');
         return null;
     }
 }
 
-// Attach the function to the global window object so the button can see it
+// Explicitly attach the function to the window object so the HTML button can access it
 window.generateAICorrespondence = generateAICorrespondence;
